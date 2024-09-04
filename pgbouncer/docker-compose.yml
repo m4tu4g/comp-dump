@@ -1,0 +1,37 @@
+services:
+  pg_shard:
+    container_name: pg_shard
+    image: postgres:latest
+    volumes:
+      - ./data_shard:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=hbZkzny5xrvVH
+      - POSTGRES_PORT=5432
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', 'postgres']
+
+
+  pgbouncer:
+    container_name: pgbouncer
+    image: edoburu/pgbouncer:v1.23.1-p2
+    environment:
+      - DB_USER=postgres
+      - DB_PASSWORD=hbZkzny5xrvVH
+      - DB_HOST=pg_shard
+      - DB_PORT=5432
+      - AUTH_TYPE=scram-sha-256
+      - POOL_MODE=transaction
+      - MAX_CLIENT_CONN = 1000
+      - DEFAULT_POOL_SIZE = 20
+      - ADMIN_USERS=postgres,dbuser
+      - LISTEN_PORT=6432
+    ports:
+      - "6432:6432"
+    depends_on:
+      - pg_shard
+    # volumes:
+    #   - ./conf/pgbouncer.ini:/etc/pgbouncer/pgbouncer.ini:ro
+    #   - ./conf/userlist.txt:/etc/pbbouncer/userlist.txt:ro
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-h', 'localhost', '-p', '6432']

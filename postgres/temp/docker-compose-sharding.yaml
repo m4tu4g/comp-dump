@@ -1,0 +1,25 @@
+version: '3.1'
+services:
+  db1:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydb
+    ports:
+    - 5432:5432
+    volumes:
+       - ./shard_data/shard_1:/var/lib/postgresql/data
+  db2:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydb
+    ports:
+    - 5433:5432
+    volumes:
+       - ./shard_data/shard_2:/var/lib/postgresql/data
+  

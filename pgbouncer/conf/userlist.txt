@@ -1,0 +1,2 @@
+"postgres" "md5fe7d25ddd8e9be6f25f921c9088fedba"
+"myuser" "md584ae17a55a62381f0dc97d83fd280c93"

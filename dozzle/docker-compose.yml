@@ -2,9 +2,12 @@ services:
   dozzle:
     image: amir20/dozzle:latest
     environment:
+      DOZZLE_ADDR: :8282
       DOZZLE_AUTH_PROVIDER: simple
+      DOZZLE_ENABLE_ACTIONS: true
+      DOZZLE_NO_ANALYTICS: true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./data:/data
     ports:
-      - 8282:8080
+      - 8282:8282

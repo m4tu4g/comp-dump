@@ -26,6 +26,7 @@ rest:
 parallelism:
   default: 1
 rest.flamegraph.enabled: true
+rest.profiling.enabled: true
 env:
   java:
     opts:

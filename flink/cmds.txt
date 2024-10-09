@@ -1,1 +1,1 @@
-docker-compose scale taskmanager=3
+docker compose scale taskmanager=2

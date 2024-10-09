@@ -5,12 +5,14 @@ services:
       - "6123"
     ports:
       - "8081:8081"
+      - "5005:5005"
     command: jobmanager
     volumes:
       - ./usrlib/:/opt/flink/usrlib
       - ./flink_conf.yaml:/opt/flink/conf/config.yaml:ro
     environment:
       - JOB_MANAGER_RPC_ADDRESS=jobmanager
+      - JAVA_TOOL_OPTIONS="-agentlib:jdwp=transport=dt_socket,address=*:5005,server=y,suspend=n"
 
   taskmanager:
     image: flink:1.19.1

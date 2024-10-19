@@ -1,12 +1,10 @@
 services:
   mongodb:
-    image: mongo:6-jammy
+    image: mongo:8-noble
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
     ports:
       - '27017:27017'
     volumes:
-      - dbdata6:/data/db
-volumes:
-  dbdata6:
+      - ./mongo_data:/data/db

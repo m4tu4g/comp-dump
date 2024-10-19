@@ -25,7 +25,7 @@ services:
     # scale: 2
     volumes:
       - ./usrlib/:/opt/flink/usrlib
-    links:
-      - "jobmanager:jobmanager"
+    # links:
+    #   - "jobmanager:jobmanager"
     environment:
       - JOB_MANAGER_RPC_ADDRESS=jobmanager
